@@ -13,27 +13,31 @@ end
 
 def transformer(word)
   vowels = %w(a e i o u)
+  final = []
   ender = []
 
   if vowels.include?(word[0])
     return word + 'ay'
   else
     arr = word.split(//)
-    arr.each do |letter|
-      if letter == 'u' && ender[-1] == 'q'
-        ender << arr[0]
-        arr.shift(1)
-      elsif vowels.include?(letter)
-        ender << "ay"
-        ender << arr
+    count = 0
+
+    while count < arr.size
+      if arr[count] == 'u' && ender[-1] == 'q'
+        ender << arr[count]
+      elsif vowels.include?(arr[count])
+        final << arr[count..-1]
+        final << ender
+        final << 'ay'
+        break
       else
-        ender << arr[0]
-        arr.shift(1)
+        ender << arr[count]
       end
+      count += 1
     end
   end
 
-  ender.join('')
+  final.join('')
 end
 
 
