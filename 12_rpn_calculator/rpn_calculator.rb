@@ -45,8 +45,6 @@ class RPNCalculator
 
   def evaluate(str)
     arr = tokens(str)
-    count = 0
-    countone = count + 1
     temp = []
 
     until arr.size == 1 && temp.size == 0
